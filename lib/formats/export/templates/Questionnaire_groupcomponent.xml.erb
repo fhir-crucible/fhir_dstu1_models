@@ -1,0 +1,11 @@
+<<%= (is_lowercase) ? name.downcase : name %>
+<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
+>
+    <%== render :template => 'element', :locals => {model: model} %>
+    <%- if !model.name().nil? -%><%== render :template => 'CodeableConcept', :locals => {name: 'name', model: model.name()} %><%- end -%>
+    <%- if !model.header().nil? -%><header value="<%= model.header() %>"/><%- end -%>
+    <%- if !model.text().nil? -%><text value="<%= model.text() %>"/><%- end -%>
+    <%- if !model.subject().nil? -%><%== render :template => 'resourcereference', :locals => {name: 'subject', model: model.subject()} %><%- end -%>
+    <%- if (!model.group().nil? && !model.group.empty?) -%><%- model.group().each do |element| -%><%== render :template => 'Questionnaire_groupcomponent', :locals => {name: 'group', model: element} %><%- end -%><%- end -%>
+    <%- if (!model.question().nil? && !model.question.empty?) -%><%- model.question().each do |element| -%><%== render :template => 'Questionnaire_questioncomponent', :locals => {name: 'question', model: element} %><%- end -%><%- end -%>
+</<%= (is_lowercase) ? name.downcase : name %>>

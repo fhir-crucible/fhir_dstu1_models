@@ -1,0 +1,9 @@
+<<%= (is_lowercase) ? name.downcase : name %>
+<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
+>
+    <%== render :template => 'element', :locals => {model: model} %>
+    <%- if !model.name().nil? -%><name value="<%= model.name() %>"/><%- end -%>
+    <%- if !model.definition().nil? -%><definition value="<%= model.definition() %>"/><%- end -%>
+    <%- if !model.documentation().nil? -%><documentation value="<%= model.documentation() %>"/><%- end -%>
+    <%- if (!model.parameter().nil? && !model.parameter.empty?) -%><%- model.parameter().each do |element| -%><%== render :template => 'Conformance_conformancerestresourcesearchparamcomponent', :locals => {name: 'parameter', model: element} %><%- end -%><%- end -%>
+</<%= (is_lowercase) ? name.downcase : name %>>

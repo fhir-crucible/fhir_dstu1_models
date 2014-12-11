@@ -1,0 +1,14 @@
+<<%= (is_lowercase) ? name.downcase : name %>
+<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
+>
+    <%== render :template => 'element', :locals => {model: model} %>
+    <%- if !model.identifier().nil? -%><identifier value="<%= model.identifier() %>"/><%- end -%>
+    <%- if !model.outcome().nil? -%><outcome value="<%= model.outcome() %>"/><%- end -%>
+    <%- if !model.total().nil? -%><total value="<%= model.total() %>"/><%- end -%>
+    <%- if (!model.parameter().nil? && !model.parameter.empty?) -%><%- model.parameter().each do |element| -%><%== render :template => 'Extension', :locals => {name: 'parameter', model: element} %><%- end -%><%- end -%>
+    <%- if (!model.first().nil? && !model.first.empty?) -%><%- model.first().each do |element| -%><%== render :template => 'Extension', :locals => {name: 'first', model: element} %><%- end -%><%- end -%>
+    <%- if (!model.previous().nil? && !model.previous.empty?) -%><%- model.previous().each do |element| -%><%== render :template => 'Extension', :locals => {name: 'previous', model: element} %><%- end -%><%- end -%>
+    <%- if (!model.next().nil? && !model.next.empty?) -%><%- model.next().each do |element| -%><%== render :template => 'Extension', :locals => {name: 'next', model: element} %><%- end -%><%- end -%>
+    <%- if (!model.last().nil? && !model.last.empty?) -%><%- model.last().each do |element| -%><%== render :template => 'Extension', :locals => {name: 'last', model: element} %><%- end -%><%- end -%>
+    <%- if (!model.reference().nil? && !model.reference.empty?) -%><%- model.reference().each do |element| -%><%== render :template => 'resourcereference', :locals => {name: 'reference', model: element} %><%- end -%><%- end -%>
+</<%= (is_lowercase) ? name.downcase : name %>>

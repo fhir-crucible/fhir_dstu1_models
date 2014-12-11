@@ -1,0 +1,7 @@
+<<%= (is_lowercase) ? name.downcase : name %>
+<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
+>
+    <%== render :template => 'element', :locals => {model: model} %>
+    <%- if !model.code().nil? -%><%== render :template => 'CodeableConcept', :locals => {name: 'code', model: model.code()} %><%- end -%>
+    <%- if (!model.detail().nil? && !model.detail.empty?) -%><%- model.detail().each do |element| -%><%== render :template => 'resourcereference', :locals => {name: 'detail', model: element} %><%- end -%><%- end -%>
+</<%= (is_lowercase) ? name.downcase : name %>>

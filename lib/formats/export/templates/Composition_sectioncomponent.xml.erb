@@ -1,0 +1,10 @@
+<<%= (is_lowercase) ? name.downcase : name %>
+<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
+>
+    <%== render :template => 'element', :locals => {model: model} %>
+    <%- if !model.title().nil? -%><title value="<%= model.title() %>"/><%- end -%>
+    <%- if !model.code().nil? -%><%== render :template => 'CodeableConcept', :locals => {name: 'code', model: model.code()} %><%- end -%>
+    <%- if !model.subject().nil? -%><%== render :template => 'resourcereference', :locals => {name: 'subject', model: model.subject()} %><%- end -%>
+    <%- if !model.content().nil? -%><%== render :template => 'resourcereference', :locals => {name: 'content', model: model.content()} %><%- end -%>
+    <%- if (!model.section().nil? && !model.section.empty?) -%><%- model.section().each do |element| -%><%== render :template => 'Composition_sectioncomponent', :locals => {name: 'section', model: element} %><%- end -%><%- end -%>
+</<%= (is_lowercase) ? name.downcase : name %>>

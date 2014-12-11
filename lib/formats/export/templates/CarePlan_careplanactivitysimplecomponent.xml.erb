@@ -1,0 +1,16 @@
+<<%= (is_lowercase) ? name.downcase : name %>
+<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
+>
+    <%== render :template => 'element', :locals => {model: model} %>
+    <%- if !model.category().nil? -%><category value="<%= model.category() %>"/><%- end -%>
+    <%- if !model.code().nil? -%><%== render :template => 'CodeableConcept', :locals => {name: 'code', model: model.code()} %><%- end -%>
+    <%- if !model.timingSchedule().nil? -%><%== render :template => 'Schedule', :locals => {name: 'timingSchedule', model: model.timingSchedule()} %><%- end -%>
+    <%- if !model.timingPeriod().nil? -%><%== render :template => 'Period', :locals => {name: 'timingPeriod', model: model.timingPeriod()} %><%- end -%>
+    <%- if !model.timingString().nil? -%><timingString value="<%= model.timingString() %>"/><%- end -%>
+    <%- if !model.location().nil? -%><%== render :template => 'resourcereference', :locals => {name: 'location', model: model.location()} %><%- end -%>
+    <%- if (!model.performer().nil? && !model.performer.empty?) -%><%- model.performer().each do |element| -%><%== render :template => 'resourcereference', :locals => {name: 'performer', model: element} %><%- end -%><%- end -%>
+    <%- if !model.product().nil? -%><%== render :template => 'resourcereference', :locals => {name: 'product', model: model.product()} %><%- end -%>
+    <%- if !model.dailyAmount().nil? -%><%== render :template => 'Quantity', :locals => {name: 'dailyAmount', model: model.dailyAmount()} %><%- end -%>
+    <%- if !model.quantity().nil? -%><%== render :template => 'Quantity', :locals => {name: 'quantity', model: model.quantity()} %><%- end -%>
+    <%- if !model.details().nil? -%><details value="<%= model.details() %>"/><%- end -%>
+</<%= (is_lowercase) ? name.downcase : name %>>

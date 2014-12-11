@@ -1,0 +1,8 @@
+<<%= (is_lowercase) ? name.downcase : name %>
+<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
+>
+    <%== render :template => 'element', :locals => {model: model} %>
+    <%- if !model.fhirType().nil? -%><%== render :template => 'CodeableConcept', :locals => {name: 'type', model: model.fhirType()} %><%- end -%>
+    <%- if !model.address().nil? -%><address value="<%= model.address() %>"/><%- end -%>
+    <%- if (!model.parameter().nil? && !model.parameter.empty?) -%><%- model.parameter().each do |element| -%><%== render :template => 'DocumentReference_documentreferenceserviceparametercomponent', :locals => {name: 'parameter', model: element} %><%- end -%><%- end -%>
+</<%= (is_lowercase) ? name.downcase : name %>>

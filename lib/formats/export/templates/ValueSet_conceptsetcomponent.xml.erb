@@ -1,0 +1,9 @@
+<<%= (is_lowercase) ? name.downcase : name %>
+<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
+>
+    <%== render :template => 'element', :locals => {model: model} %>
+    <%- if !model.system().nil? -%><system value="<%= model.system() %>"/><%- end -%>
+    <%- if !model.versionNum().nil? -%><version value="<%= model.versionNum() %>"/><%- end -%>
+    <%- if (model.code() && !model.code.empty?) -%><%- model.code().each do |element| -%><code value="<%= element %>"/><%- end -%><%- end -%>
+    <%- if (!model.filter().nil? && !model.filter.empty?) -%><%- model.filter().each do |element| -%><%== render :template => 'ValueSet_conceptsetfiltercomponent', :locals => {name: 'filter', model: element} %><%- end -%><%- end -%>
+</<%= (is_lowercase) ? name.downcase : name %>>
