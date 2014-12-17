@@ -1,7 +1,0 @@
-<<%= (is_lowercase) ? name.downcase : name %>
-<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
->
-    <%== render :template => 'element', :locals => {model: model} %>
-    <%- if !model.quantity().nil? -%><%== render :template => 'Ratio', :locals => {name: 'quantity', model: model.quantity()} %><%- end -%>
-    <%- if !model.substance().nil? -%><%== render :template => 'resourcereference', :locals => {name: 'substance', model: model.substance()} %><%- end -%>
-</<%= (is_lowercase) ? name.downcase : name %>>

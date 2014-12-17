@@ -1,8 +1,0 @@
-<<%= (is_lowercase) ? name.downcase : name %>
-<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
->
-    <%== render :template => 'element', :locals => {model: model} %>
-    <%- if !model.code().nil? -%><code value="<%= model.code() %>"/><%- end -%>
-    <%- if !model.profile().nil? -%><profile value="<%= model.profile() %>"/><%- end -%>
-    <%- if (model.aggregation() && !model.aggregation.empty?) -%><%- model.aggregation().each do |element| -%><aggregation value="<%= element %>"/><%- end -%><%- end -%>
-</<%= (is_lowercase) ? name.downcase : name %>>

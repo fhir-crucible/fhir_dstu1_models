@@ -1,9 +1,0 @@
-<<%= (is_lowercase) ? name.downcase : name %>
-<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
->
-    <%== render :template => 'element', :locals => {model: model} %>
-    <%- if !model.low().nil? -%><%== render :template => 'Quantity', :locals => {name: 'low', model: model.low()} %><%- end -%>
-    <%- if !model.high().nil? -%><%== render :template => 'Quantity', :locals => {name: 'high', model: model.high()} %><%- end -%>
-    <%- if !model.meaning().nil? -%><%== render :template => 'CodeableConcept', :locals => {name: 'meaning', model: model.meaning()} %><%- end -%>
-    <%- if !model.age().nil? -%><%== render :template => 'Range', :locals => {name: 'age', model: model.age()} %><%- end -%>
-</<%= (is_lowercase) ? name.downcase : name %>>

@@ -1,8 +1,0 @@
-<<%= (is_lowercase) ? name.downcase : name %>
-<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
->
-    <%== render :template => 'element', :locals => {model: model} %>
-    <%- if !model.discriminator().nil? -%><discriminator value="<%= model.discriminator() %>"/><%- end -%>
-    <%- if !model.ordered().nil? -%><ordered value="<%= model.ordered() %>"/><%- end -%>
-    <%- if !model.rules().nil? -%><rules value="<%= model.rules() %>"/><%- end -%>
-</<%= (is_lowercase) ? name.downcase : name %>>
