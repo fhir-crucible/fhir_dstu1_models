@@ -1,5 +1,5 @@
 <%- if !model.text().nil? -%>
-  <%== render :template => 'Narrative', :locals => {name: 'text', model: model.text()} %>
+  <%== render :template => 'narrative', :locals => {name: 'text', model: model.text()} %>
 <%- end -%>
 
 <% if !model.contained.blank? %>
