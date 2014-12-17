@@ -1,0 +1,23 @@
+<<%= (is_lowercase) ? name.downcase : name %>
+<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
+>
+    <%== render :template => 'element', :locals => {model: model} %>
+    <%- if !model.short().nil? -%><short value="<%= model.short() %>"/><%- end -%>
+    <%- if !model.formal().nil? -%><formal value="<%= model.formal() %>"/><%- end -%>
+    <%- if !model.comments().nil? -%><comments value="<%= model.comments() %>"/><%- end -%>
+    <%- if !model.requirements().nil? -%><requirements value="<%= model.requirements() %>"/><%- end -%>
+    <%- if (model.synonym() && !model.synonym.empty?) -%><%- model.synonym().each do |element| -%><synonym value="<%= element %>"/><%- end -%><%- end -%>
+    <%- if !model.min().nil? -%><min value="<%= model.min() %>"/><%- end -%>
+    <%- if !model.max().nil? -%><max value="<%= model.max() %>"/><%- end -%>
+    <%- if (!model.fhirType().nil? && !model.fhirType.empty?) -%><%- model.fhirType().each do |element| -%><%== render :template => 'profile_typerefcomponent', :locals => {name: 'type', model: element} %><%- end -%><%- end -%>
+    <%- if !model.nameReference().nil? -%><nameReference value="<%= model.nameReference() %>"/><%- end -%>
+    <%- if !model.value().nil? -%><%- if FHIR::AnyType::PRIMITIVES.include? model.valueType().downcase -%><value<%= model.valueType() %> value="<%= model.value() %>"/><%- elsif FHIR::AnyType::DATE_TIMES.include? model.valueType().downcase -%><value<%= model.valueType() %> value="<%= model.value().iso8601 %>"/><%- else -%><%== model.value().to_xml(is_root: false, name: "value#{model.valueType()}")%><%- end -%><%- end -%>
+    <%- if !model.example().nil? -%><%- if FHIR::AnyType::PRIMITIVES.include? model.exampleType().downcase -%><example<%= model.exampleType() %> value="<%= model.example() %>"/><%- elsif FHIR::AnyType::DATE_TIMES.include? model.exampleType().downcase -%><example<%= model.exampleType() %> value="<%= model.example().iso8601 %>"/><%- else -%><%== model.example().to_xml(is_root: false, name: "example#{model.exampleType()}")%><%- end -%><%- end -%>
+    <%- if !model.maxLength().nil? -%><maxLength value="<%= model.maxLength() %>"/><%- end -%>
+    <%- if (model.condition() && !model.condition.empty?) -%><%- model.condition().each do |element| -%><condition value="<%= element %>"/><%- end -%><%- end -%>
+    <%- if (!model.constraint().nil? && !model.constraint.empty?) -%><%- model.constraint().each do |element| -%><%== render :template => 'profile_elementdefinitionconstraintcomponent', :locals => {name: 'constraint', model: element} %><%- end -%><%- end -%>
+    <%- if !model.mustSupport().nil? -%><mustSupport value="<%= model.mustSupport() %>"/><%- end -%>
+    <%- if !model.isModifier().nil? -%><isModifier value="<%= model.isModifier() %>"/><%- end -%>
+    <%- if !model.binding().nil? -%><%== render :template => 'profile_elementdefinitionbindingcomponent', :locals => {name: 'binding', model: model.binding()} %><%- end -%>
+    <%- if (!model.mapping().nil? && !model.mapping.empty?) -%><%- model.mapping().each do |element| -%><%== render :template => 'profile_elementdefinitionmappingcomponent', :locals => {name: 'mapping', model: element} %><%- end -%><%- end -%>
+</<%= (is_lowercase) ? name.downcase : name %>>

@@ -1,0 +1,8 @@
+<<%= (is_lowercase) ? name.downcase : name %>
+<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
+>
+    <%== render :template => 'element', :locals => {model: model} %>
+    <%- if !model.code().nil? -%><%== render :template => 'codeableconcept', :locals => {name: 'code', model: model.code()} %><%- end -%>
+    <%- if !model.period().nil? -%><%== render :template => 'period', :locals => {name: 'period', model: model.period()} %><%- end -%>
+    <%- if !model.issuer().nil? -%><%== render :template => 'resourcereference', :locals => {name: 'issuer', model: model.issuer()} %><%- end -%>
+</<%= (is_lowercase) ? name.downcase : name %>>

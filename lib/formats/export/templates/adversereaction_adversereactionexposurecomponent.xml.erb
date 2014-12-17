@@ -1,0 +1,9 @@
+<<%= (is_lowercase) ? name.downcase : name %>
+<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
+>
+    <%== render :template => 'element', :locals => {model: model} %>
+    <%- if !model.date().nil? -%><date value="<%= model.date().iso8601 %>"/><%- end -%>
+    <%- if !model.fhirType().nil? -%><type value="<%= model.fhirType() %>"/><%- end -%>
+    <%- if !model.causalityExpectation().nil? -%><causalityExpectation value="<%= model.causalityExpectation() %>"/><%- end -%>
+    <%- if !model.substance().nil? -%><%== render :template => 'resourcereference', :locals => {name: 'substance', model: model.substance()} %><%- end -%>
+</<%= (is_lowercase) ? name.downcase : name %>>

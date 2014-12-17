@@ -1,0 +1,17 @@
+<<%= (is_lowercase) ? name.downcase : name %>
+<%if model.xmlId%> id="<%= model.xmlId%>"<%end%>
+>
+    <%== render :template => 'element', :locals => {model: model} %>
+    <%- if !model.preAdmissionIdentifier().nil? -%><%== render :template => 'identifier', :locals => {name: 'preAdmissionIdentifier', model: model.preAdmissionIdentifier()} %><%- end -%>
+    <%- if !model.origin().nil? -%><%== render :template => 'resourcereference', :locals => {name: 'origin', model: model.origin()} %><%- end -%>
+    <%- if !model.admitSource().nil? -%><%== render :template => 'codeableconcept', :locals => {name: 'admitSource', model: model.admitSource()} %><%- end -%>
+    <%- if !model.period().nil? -%><%== render :template => 'period', :locals => {name: 'period', model: model.period()} %><%- end -%>
+    <%- if (!model.accomodation().nil? && !model.accomodation.empty?) -%><%- model.accomodation().each do |element| -%><%== render :template => 'encounter_encounterhospitalizationaccomodationcomponent', :locals => {name: 'accomodation', model: element} %><%- end -%><%- end -%>
+    <%- if !model.diet().nil? -%><%== render :template => 'codeableconcept', :locals => {name: 'diet', model: model.diet()} %><%- end -%>
+    <%- if (!model.specialCourtesy().nil? && !model.specialCourtesy.empty?) -%><%- model.specialCourtesy().each do |element| -%><%== render :template => 'codeableconcept', :locals => {name: 'specialCourtesy', model: element} %><%- end -%><%- end -%>
+    <%- if (!model.specialArrangement().nil? && !model.specialArrangement.empty?) -%><%- model.specialArrangement().each do |element| -%><%== render :template => 'codeableconcept', :locals => {name: 'specialArrangement', model: element} %><%- end -%><%- end -%>
+    <%- if !model.destination().nil? -%><%== render :template => 'resourcereference', :locals => {name: 'destination', model: model.destination()} %><%- end -%>
+    <%- if !model.dischargeDisposition().nil? -%><%== render :template => 'codeableconcept', :locals => {name: 'dischargeDisposition', model: model.dischargeDisposition()} %><%- end -%>
+    <%- if !model.dischargeDiagnosis().nil? -%><%== render :template => 'resourcereference', :locals => {name: 'dischargeDiagnosis', model: model.dischargeDiagnosis()} %><%- end -%>
+    <%- if !model.reAdmission().nil? -%><reAdmission value="<%= model.reAdmission() %>"/><%- end -%>
+</<%= (is_lowercase) ? name.downcase : name %>>
